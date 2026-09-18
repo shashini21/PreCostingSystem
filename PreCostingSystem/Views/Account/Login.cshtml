@@ -1,0 +1,91 @@
+﻿@model PRC_PreCosting_MVC.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-header">
+            <h1>Pre-Costing System</h1>
+            <p>User Login</p>
+        </div>
+
+        <div class="login-body">
+
+            <form asp-controller="Account"
+                  asp-action="Login"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly"
+                     class="login-error">
+                </div>
+
+                <div class="input-group">
+                    <label asp-for="LogName">
+                        Login Name
+                    </label>
+
+                    <input asp-for="LogName"
+                           class="login-input login-username"
+                           autocomplete="off"
+                           value=""
+                           placeholder="Enter login name"
+                           oninput="this.value = this.value.toUpperCase();" 
+                           onkeydown="moveToPassword(event);" />
+
+                    <span asp-validation-for="LogName"
+                          class="validation-message">
+                    </span>
+                </div>
+
+                <div class="input-group">
+                    <label asp-for="Password">
+                        Password
+                    </label>
+
+                    <input asp-for="Password"
+                           id="password"
+                           class="login-input"
+                           type="password"
+                           autocomplete="new-password"
+                           value=""
+                           placeholder="Enter password" />
+
+                    <span asp-validation-for="Password"
+                          class="validation-message">
+                    </span>
+                </div>
+
+                <button type="submit" class="login-button">
+                    Login
+                    <span>→</span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync(
+            "_ValidationScriptsPartial");
+    }
+    <script>
+        function moveToPassword(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("password").focus();
+            }
+        }
+    </script>
+}

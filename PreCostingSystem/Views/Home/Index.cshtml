@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+
+    var userName = Context.Session.GetString("UserName");
+    var logName = Context.Session.GetString("LogName");
+    var accessLevel = Context.Session.GetInt32("AccessLevel");
+}
+
+<div class="container mt-5">
+
+    <h1>Dashboard</h1>
+
+    <div class="alert alert-success">
+
+        <h4>Login Successful</h4>
+
+        <p>
+            Welcome, <strong>@userName</strong>
+        </p>
+
+        <p>
+            Login Name:
+            <strong>@logName</strong>
+        </p>
+
+        <p>
+            Access Level:
+            <strong>@accessLevel</strong>
+        </p>
+
+    </div>
+
+</div>
